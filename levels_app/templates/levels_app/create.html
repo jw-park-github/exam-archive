@@ -1,0 +1,51 @@
+{% extends 'basic.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+  <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+      <div style="border: 0.2rem solid #343A40; border-radius: 2rem;">
+        <div style="margin: 2rem">
+
+
+      <h2>1️⃣</h2><br> <a href="{% url 'subjects_app:list' %}" class="ssogle_header_nav"><button class="btn btn-dark">전체 자료</button></a>란에서 강의 목록을 확인하세요. <br><br>
+    자료가 존재하는 과목의 중간고사 또는 기말고사란은 <br><br><button class="material-icons">download</button>로 표시되고,<br><br> 자료가 없는 경우 공란으로 표시됩니다.<br><br>
+<div class ="d_line"></div><br>
+            <h2>2️⃣</h2> <br>중간고사 또는 기말고사란이 공란인 과목 중<br><br> 회원님이 보유하고 계신 자료가 있다면 <br><br>첨부해서 등업을 신청하세요. <br><br><hr><br>
+    <p><img src="/media/how_to_notice/how_to_1.jpg" style="max-width:100%; height:auto;"/></p><hr>
+    <p><img src="/media/how_to_notice/how_to_2.jpg" style="max-width:80%; height:auto;"/></p><hr><br>
+    <p><img src="/media/how_to_notice/how_to_3.jpg" style="max-width:60%; height:auto;"/></p><br><div class ="d_line"></div><br>
+    <br> <h2>3️⃣</h2> <br>
+
+    <br>등업이 완료되면 <br><br><button class="material-icons">download</button>아이콘이 <span><button class="btn btn-outline-dark">download</button></span>
+    버튼으로 바뀌어<br><br> 모든 자료를 다운받으실 수 있습니다. <br><br><hr><br>
+            <p><img src="/media/how_to_notice/how_to_4.jpg" style="max-width:60%; height:auto;"></p><br><hr><br>
+     <p><img src="/media/how_to_notice/how_to_5.jpg" style="max-width:100%; height:auto;"></p> 등업은 최소 24시간 이내, 최장 1주가 소요됩니다.<br> <hr><br>
+
+
+     <h2>📢 주의사항  ️</h2><br>
+    <h5>✔️ 지난 1개년 내 시행된(당해 학기 포함) <br><br>중간고사 또는 기말고사 자료 중<br><br> 하나로만 등업 신청이 가능합니다.</h5><br><hr><br>
+           <h5>예시) 22학년도 2학기 기준</h5> <br>22년학년도 2학기<br>22년학년도 여름 계절학기<br>22년학년도 1학기<br>21년 겨울 계절학기<br><br>중 출제된 중간고사 또는 기말고사 자료 1개.<br><br><hr><br>
+    <h5>✔️ 파일명 양식</h5><h5><br>학년도_학기_교수명_과목명<br></h5><br>
+           예시) 2021_1_교수명_미적분학I_중간고사<br> <br>
+<div class ="d_line">
+</div>
+
+<div style="text-align: center; max-width: 500px; margin: 4rem auto;">
+
+    <div class="mb-4">
+      <h1>📝 등업 신청란</h1><br>
+         등업 신청란입니다.<br><br>회원님의 아이디와 자료를 첨부하고 <br><br>'제출'버튼을 눌러주시면<br><br>등업 신청이 완료됩니다.
+    </div>
+    <form action="{% url 'levels_app:create' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
+    </form>
+  </div>
+          </div>
+      </div>
+
+
+
+{% endblock %}

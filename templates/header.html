@@ -1,0 +1,52 @@
+<div class ="h_line"></div>
+
+<div class="ssogle_header">
+
+<!--    <div><a href="/"><h1 class="ssogle_logo">Ssogle</h1></a></div>-->
+
+            <a href="{% url 'subjects_app:list' %}" class="ssogle_header_nav">
+                <span><button class="btn btn-dark btn">전체 자료</button></span>
+            </a>
+
+
+            <a href="{% url 'majors_app:list' %}" class="ssogle_header_nav">
+                <span><button class="btn btn-dark btn">전공별 분류</button></span>
+            </a>
+
+            {% if not user.is_authenticated %}
+            <a href="{% url 'accounts_app:login' %}?next={{ request.path }}" class="ssogle_header_nav">
+                <span><button class="btn btn-dark btn">로그인</button></span>
+            </a>
+            <a href="{% url 'accounts_app:create' %}" class="ssogle_header_nav">
+                <span><button class="btn btn-dark btn">회원가입</button></span>
+            </a>
+            {% else %}
+            <a href="{% url 'accounts_app:detail' pk=user.pk %}" class="ssogle_header_nav">
+                <span><button class="btn btn-dark btn">마이페이지</button></span>
+            </a>
+
+            <a href="{% url 'accounts_app:logout' %}?next={{ request.path }}" class="ssogle_header_nav">
+                <span><button class="btn btn-outline-dark btn">로그아웃</button></span>
+            </a>
+
+            {% endif %}
+<h6></h6>
+
+      <div style="text-align: center;"><a href="/"><img src="/media/logo_pics/pic_header_logo2.jpg"
+                                                        style="width: 22rem; border-radius: 0.3rem"></a></div>
+
+
+
+            <div class='ssogle_header_searchbar'>
+<form class="d-flex" method="POST" action="{% url 'search' %}">
+            {% csrf_token %}
+            <input class="form-control" type="search" placeholder="과목명을 기준으로 검색하세요🔍" name="searched" aria-label="Search">
+                <button class="btn btn-dark" type="submit">Search</button> </form>
+
+</div>
+
+</div>
+
+<div class ="d_line"></div>
+
+

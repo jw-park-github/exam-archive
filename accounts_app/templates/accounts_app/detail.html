@@ -1,0 +1,78 @@
+{% extends 'basic.html'%}
+
+{% block content %}
+
+
+  <div>
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
+        <div style="border: 0.15rem solid #343A40; border-radius: 2rem;">
+      <div style="margin: 1rem">
+          <div>
+<h5 style="font-family: 'NanumSquareB'">
+
+<hr>
+
+      {% if user.is_authenticated and target_user.level and user.first_name %}
+       {{ user.username }} 님의 등업이 완료되었습니다.<br> 이제 제한없이 모든 자료를 이용하실 수 있습니다 🤩 <br><hr>
+
+
+        {% elif user.is_authenticated and target_user.level and not user.first_name %}
+        {{ user.username }} 님의 등업 신청이 완료되었습니다 😃 <br>등업은 최소 24시간 이내, 최장 1주가 소요됩니다.<br><hr>
+
+        {% elif user.is_authenticated and not target_user.level and not user.first_name %}
+         {{ user.username }} 님은 '준회원'입니다 😢<br><br>등업 후 모든 자료를 제한없이 이용하세요.<br><hr>
+        {% else %}
+
+        {% endif %}
+
+      </h5>
+
+        {% if target_user == user and not target_user.level %}
+
+        <a class="btn btn-dark rounded-pill col-6 mt-3" style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
+           href="{% url 'levels_app:create' %}">
+            등업 신청
+        </a>
+
+        {% elif target_user == user and target_user.level %}
+
+
+
+        {% else %}
+
+          {% endif %}
+
+
+      {% if target_user == user %}
+
+
+        <a class="btn btn-dark rounded-pill col-6 mt-3" style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
+           href="{% url 'accounts_app:update' pk=user.pk %}">
+            비밀번호 변경
+        </a>
+
+        <a class="btn btn-danger rounded-pill col-6 mt-3" style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
+           href="{% url 'accounts_app:delete' pk=user.pk %}">
+            회원 탈퇴
+        </a>
+
+      {% endif %}
+    </div>
+  </div>
+            </div>
+  </div>
+  </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+    .container {
+        padding: 0;
+        margin: 0, auto;
+    }
+
+    .container div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1rem;
+    }
+
+    .container img {
+      width: 8rem;
+      height: 8rem;
+      object-fit: cover;
+      border-radius: 1.5rem;
+    }
+
+</style>
+
+    {% if majors_list %}
+    <div class="container">
+        {% for major in majors_list %}
+        <a href="{% url 'majors_app:detail' pk=major.pk %}">
+            {% include 'snippets/card_major.html' with major=major %}
+        </a>
+        {% endfor %}
+    </div>
+    <script src="{% static 'js/magicgrid.js' %}"></script>
+    {% else %}
+    <div class="text-center">
+        <br><br>
+        <h4>등록된 자료가 없습니다.</h4>
+        <br>
+    </div>
+    {% endif %}
+
+
+
+
+
+{% endblock %}

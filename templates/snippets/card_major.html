@@ -1,0 +1,46 @@
+
+                <table class="table">
+                    <thead class="thead-light">
+                            <th scope="col">학과</th>
+                            <th scope="col">학년도</th>
+                            <th scope="col">학기</th>
+                            <th scope="col">교수명</th>
+                            <th scope="col">과목명</th>
+                            <th scope="col">중간고사</th>
+                            <th scope="col">기말고사</th>
+                    </thead>
+                    <tbody>
+
+    {% for subject in subjects_list %}
+        <tr>
+            <td>{{ subject.major }}</td>
+            <td>{{ subject.year }}</td>
+            <td>{{ subject.semester }}</td>
+            <td>{{ subject.prof_name }}</td>
+            <td>{{ subject.subject_name }}</td>
+
+            <td>
+                    {% if user.first_name and subject.midterm %}
+                            <a href="{{ subject.midterm.url }}" class="btn btn-outline-dark" target="_blank">
+                                    다운로드
+                            </a>
+                    {% elif subject.midterm %}
+                            <button class="material-icons">download</button>
+                    {% endif %}
+          </td>
+
+          <td>
+            {% if user.first_name and subject.final_exam %}
+            <a href="{{ subject.final_exam.url }}" class="btn btn-outline-dark" target="_blank">
+              다운로드
+            </a>
+            {% elif subject.final_exam %}
+                            <button class="material-icons">download</button>
+                    {% endif %}
+          </td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+
+  </table>

@@ -1,0 +1,19 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+  <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+        <div style="border: 0.3rem solid #B60005; border-radius: 2rem;">
+      <div style="margin: 0.5rem">
+    <div class="mb-4">
+      <h4>회원 탈퇴</h4>
+    </div>
+    <form action="{% url 'accounts_app:delete' pk=target_user.pk %}" method="post">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-outline-danger">
+    </form>
+  </div>
+          </div>
+    </div>
+
+{% endblock %}

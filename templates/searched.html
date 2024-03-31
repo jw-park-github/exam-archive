@@ -1,0 +1,60 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+        {% if searched %}
+                <h6> "{{ searched }}"에 대한 검색 결과 </h6>
+
+<table class="table">
+                    <thead class="thead-light">
+                            <th scope="col">학과</th>
+                            <th scope="col">학년도</th>
+                            <th scope="col">학기</th>
+                            <th scope="col">교수명</th>
+                            <th scope="col">과목명</th>
+                            <th scope="col">중간고사</th>
+                            <th scope="col">기말고사</th>
+                    </thead>
+                    <tbody>
+
+    {% for s_name in s_names_list %}
+        <tr>
+            <td>{{ s_name.major }}</td>
+            <td>{{ s_name.year }}</td>
+            <td>{{ s_name.semester }}</td>
+            <td>{{ s_name.prof_name }}</td>
+            <td>{{ s_name.subject_name }}</td>
+
+            <td>
+                    {% if user.first_name and s_name.midterm %}
+                            <a href="{{ subject.midterm.url }}" class="btn btn-outline-dark" target="_blank">
+                                    다운로드
+                            </a>
+                    {% elif s_name.midterm %}
+                            <button class="material-icons">download</button>
+                    {% endif %}
+          </td>
+
+          <td>
+            {% if user.first_name and s_name.final_exam %}
+            <a href="{{ subject.final_exam.url }}" class="btn btn-outline-dark" target="_blank">
+              다운로드
+            </a>
+            {% elif s_name.final_exam %}
+                            <button class="material-icons">download</button>
+                    {% endif %}
+          </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+  </table>
+{% include 'snippets/pagination.html' with page_obj=page_obj %}
+        {% else %}
+                <h5 style="text-align: center;"> 찾으시는 자료가 존재하지 않습니다. 😢<br> '과목명'을 기준으로 다시 한번 검색해보세요. </h5>
+        {% endif %}
+
+
+
+{% endblock %}
+
+
